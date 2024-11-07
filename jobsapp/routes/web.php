@@ -9,7 +9,15 @@ Route::get('/', function () {
 });
 
 Route::get('/jobs', function () {
-    return view('jobs',  ['jobs' => JobListing::all()]);
+    // $jobs = JobListing::with('employer')->get();
+
+    // $jobs = JobListing::with('employer')->paginate(3);
+
+    $jobs = JobListing::with('employer')->simplePaginate(3);
+
+    // $jobs = JobListing::with('employer')->cursorPaginate(3);
+
+    return view('jobs',  ['jobs' => $jobs]);
 });
 
 Route::get('/contact', function () {
@@ -21,7 +29,3 @@ Route::get('/jobs/{id}', function ($id) {
     $job = JobListing::find($id);
     return view('job', ['job' => $job]);
 });
-
-
-
-
