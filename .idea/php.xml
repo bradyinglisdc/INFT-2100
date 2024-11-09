@@ -12,7 +12,6 @@
   </component>
   <component name="PhpIncludePathManager">
     <include_path>
-      <path value="$PROJECT_DIR$/vendor/composer" />
       <path value="$PROJECT_DIR$/jobsapp/vendor/sebastian/version" />
       <path value="$PROJECT_DIR$/jobsapp/vendor/webmozart/assert" />
       <path value="$PROJECT_DIR$/jobsapp/vendor/guzzlehttp/guzzle" />
@@ -134,9 +133,10 @@
       <path value="$PROJECT_DIR$/jobsapp/vendor/sebastian/object-reflector" />
       <path value="$PROJECT_DIR$/jobsapp/vendor/sebastian/recursion-context" />
       <path value="$PROJECT_DIR$/jobsapp/vendor/sebastian/type" />
+      <path value="$PROJECT_DIR$/jobsapp/vendor/laravel/pail" />
     </include_path>
   </component>
-  <component name="PhpProjectSharedConfiguration" php_language_level="8.0">
+  <component name="PhpProjectSharedConfiguration" php_language_level="8.3">
     <option name="suggestChangeDefaultLanguageLevel" value="false" />
   </component>
   <component name="PhpStanOptionsConfiguration">

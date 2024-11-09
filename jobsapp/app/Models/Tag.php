@@ -9,8 +9,10 @@ class Tag extends Model
 {
     use HasFactory;
 
+
     public function jobListings()
     {
-        return $this->belongsToMany(JobListing::class, foreignPivotKey: 'job_listing_tag');
+        return $this->belongsToMany(JobListing::class, relatedPivotKey: 'job_listing_id');
     }
+
 }

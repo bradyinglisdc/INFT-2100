@@ -21,7 +21,7 @@ class JobListingFactory extends Factory
 
             'title' => fake()->jobTitle(),
             'salary' => '$' . number_format(
-                fake()->numberBetween(50000, 120000), 0, '.', ','
+                    fake()->numberBetween(50000, 120000), 0, '.', ','
                 ) . ' CAD',
             'employer_id' => Employer::factory()
         ];

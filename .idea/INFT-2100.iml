@@ -7,6 +7,8 @@
       <sourceFolder url="file://$MODULE_DIR$/jobsapp/database/seeders" isTestSource="false" packagePrefix="Database\Seeders\" />
       <sourceFolder url="file://$MODULE_DIR$/jobsapp/tests" isTestSource="true" packagePrefix="Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/jobsapp/tests/Feature" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/jobsapp/tests/Unit" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/jobsapp/vendor/brianium/paratest" />
       <excludeFolder url="file://$MODULE_DIR$/jobsapp/vendor/brick/math" />
       <excludeFolder url="file://$MODULE_DIR$/jobsapp/vendor/carbonphp/carbon-doctrine-types" />
@@ -128,7 +130,6 @@
       <excludeFolder url="file://$MODULE_DIR$/jobsapp/vendor/vlucas/phpdotenv" />
       <excludeFolder url="file://$MODULE_DIR$/jobsapp/vendor/voku/portable-ascii" />
       <excludeFolder url="file://$MODULE_DIR$/jobsapp/vendor/webmozart/assert" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
