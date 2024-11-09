@@ -134,6 +134,7 @@
       <path value="$PROJECT_DIR$/jobsapp/vendor/sebastian/recursion-context" />
       <path value="$PROJECT_DIR$/jobsapp/vendor/sebastian/type" />
       <path value="$PROJECT_DIR$/jobsapp/vendor/laravel/pail" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.3">
