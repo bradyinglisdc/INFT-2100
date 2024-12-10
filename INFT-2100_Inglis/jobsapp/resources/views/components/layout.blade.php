@@ -28,6 +28,28 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="hidden md:block">
+                    <div class="ml-4 flex items items-center md:ml:-6">
+
+                        @guest()
+                            <x-nav-link href="/login" :active="request()->is('login')">Log In</x-nav-link>
+                            <x-nav-link href="/register" :active="request()->is('register')">Register</x-nav-link>
+                        @endguest
+
+                        @auth()
+                        <form method="post" action="/logout">
+                            @csrf
+                            <x-form-button>Log Out</x-form-button>
+                        </form>
+                        @endauth
+
+
+
+                    </div>
+                </div>
+
+
                 <div class="hidden md:block">
                     <div class="ml-4 flex items-center md:ml-6">
                         <button type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">

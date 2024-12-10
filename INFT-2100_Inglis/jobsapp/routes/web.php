@@ -1,102 +1,41 @@
 <?php
 
-use App\Models\JobListing;
+use App\Http\Controllers\JobListingController;
+use App\Http\Controllers\RegisteredUserController;
+use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 
-/************************************
- * Home and Contact Read Operations
- ************************************/
+// Static Routes
+Route::View('/', 'home');
+Route::View('/contact', 'contact');
 
-// Home Page
-Route::get('/', function () {
-    return view('home');
-});
+// Job CRUD
+Route::get('/jobs', [JobListingController::class, 'index']);
+Route::get('/jobs/create', [JobListingController::class, 'create']);
 
-// Contact Page
-Route::get('/contact', function () {
-    return view('contact');
-});
+Route::post('/jobs', [JobListingController::class, 'store'])
+    ->middleware('auth');
 
-/************************************
- * Job Listing CRUD Operations
- ************************************/
+Route::get('/jobs/{job}', [JobListingController::class, 'show']);
 
-// Jobs Listing Index Page
-Route::get('/jobs', function () {
-    $jobs = JobListing::with('employer')->latest()->simplePaginate(3);
-    return view('jobs.index', ['jobs' => $jobs]);
-});
+Route::get('/jobs/{job}/edit', [JobListingController::class, 'edit'])
+    ->middleware('auth')
+    ->can('edit', 'job');
 
-// Get Create - Job Listing
-Route::get('/jobs/create', function () {
-    return view('jobs.create');
-});
+Route::patch('/jobs/{job}', [JobListingController::class, 'update'])
+    ->middleware('auth')
+    ->can('edit', 'job');
 
-Route::post('/jobs', function () {
+Route::delete('/jobs/{job}', [JobListingController::class, 'destroy'])
+    ->middleware('auth')
+    ->can('edit', 'job');
 
-    // Data validation
-    request()->validate([
-        'title' => ['required', 'min:5'],
-        'salary' => ['required']
-    ]);
+// Registration
+Route::get('/register', [RegisteredUserController::class, 'create']);
+Route::post('/register', [RegisteredUserController::class, 'store']);
 
-    // Save Job Listing
-    JobListing::create([
-        'title' => request('title'),
-        'salary' => request('salary'),
-        'employer_id' => 1
-    ]);
-    return redirect('/jobs');
-});
+// Auth Routes
+Route::get('/login', [SessionController::class, 'create']);
+Route::post('/login', [SessionController::class, 'store']);
+Route::post('/logout', [SessionController::class, 'destroy']);
 
-// GET Show - Job Listing
-Route::get('/jobs/{id}', function ($id) {
-    //dd($id);
-    //$job = Arr::first(JobListing::all(), fn($job) => $job['id'] == $id);
-    $job = JobListing::find($id);
-    return view('jobs.show', ['job' => $job]);
-});
-
-// GET Edit - Job Listing
-Route::get('/jobs/{id}/edit', function ($id) {
-    $job = JobListing::find($id);
-    return view('jobs.edit', ['job' => $job]);
-});
-
-// PATCH Update - Job Listing
-Route::patch('/jobs/{id}', function ($id) {
-
-    // Step 1: Validation
-    request()->validate([
-        'title' => ['required', 'min:5'],
-        'salary' => ['required']
-    ]);
-
-    // Step 2: Authorization
-    // TODO
-
-    // Step 3: Find the job
-    $job = JobListing::FindOrFail($id);
-
-    // Step 4: Update changes
-    $job->update([
-        'title' => request('title'),
-        'salary' => request('salary')
-    ]);
-
-    // Redirect to show updated job (jobs.show page)
-    return redirect('/jobs/' .$job->id);
-});
-
-// DELETE - Job Listing
-Route::delete('/jobs/{id}', function ($id) {
-
-    // Step 1: Authorization
-    // TODO
-
-    // Step 2: Find and Delete
-    JobListing::findOrFail($id)->delete();
-
-    // Step 3: Redirect to Job Listing index page
-    return redirect('/jobs');
-});
